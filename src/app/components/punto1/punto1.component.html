@@ -1,0 +1,84 @@
+<div class="container">
+  <form class="card" #mensajeFrom="ngForm">
+    <div class="card-header"> Envio de Mensajes </div>
+    <div class="card-body">
+      <div class="row form-group">
+        <label class="col-sm-12 col-md-4">Para</label>
+        <input class="form-control col-sm-12 col-md-8" type="text" name="txtPara" [(ngModel)]="mensaje.para" required minlength="7" pattern="[0-9]{7,20}" #txtPara="ngModel" />
+        <div *ngIf="txtPara.invalid && (txtPara.dirty || txtPara.touched)" class="alert alert-danger">
+          <div *ngIf="txtPara.errors.required">
+            El campo Para es requerido
+          </div>
+          <div *ngIf="txtPara.errors.minlength">
+            Se necesitan 7 caracteres m&iacute;nimo
+          </div>
+          <div *ngIf="txtPara.errors.pattern">
+            Solo se admiten numeros
+          </div>
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <label class="col-sm-12 col-md-4">De</label>
+        <input class="form-control col-sm-12 col-md-8" name="txtDesde" [(ngModel)]="mensaje.de" required minlength="3"
+          pattern="[A-Za-z ]{1,254}" #txtDesde="ngModel" />
+        <div *ngIf="txtDesde.invalid && (txtDesde.dirty || txtDesde.touched)" class="alert alert-danger">
+          <div *ngIf="txtDesde.errors.required">
+            El campo De es requerido
+          </div>
+          <div *ngIf="txtDesde.errors.minlength">
+            Se necesitan 3 caracteres m&iacute;nimo
+          </div>
+          <div *ngIf="txtDesde.errors.pattern">
+            Solo se admiten letras
+          </div>
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <label class="col-12">Mensaje - Tamaño: {{ tamTexto }} | M&aacute;ximo 100 caracteres</label>
+        <textarea class="form-control col-12" [maxlength]="tamMaxTexto" rows="5" name="txtTexto"
+          [(ngModel)]="mensaje.texto" (ngModelChange)="cambiarTamTexto()" required>
+        </textarea>
+      </div>
+
+      <div class="row form-group">
+        <button type="submit" class="btn btn-primary" (click)="enviarMensaje()" data-toggle="modal" data-target="#myModal" >Enviar</button>
+        <!--[disabled]="!mensajeFrom.form.valid"-->
+        <button type="button" class="btn btn-secondary" (click)="limpiarMensaje()">Limpiar</button>
+
+        <div class="modal fade" id="myModal" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Mensaje Enviado</h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                <div>
+                  Para: {{ paraView }}
+                </div>
+                <div>
+                  De: {{ deView }}
+                </div>
+                <div>
+                  Mensaje: {{ textoView }}
+                </div>
+              </div>
+
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
