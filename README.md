@@ -1,9 +1,19 @@
 # tp-angular
 Trabajo practico de angular - Programación y Servicios Web
 
-# Pasos
+## Instalación
+Clonar el repositorio
+```
+git clone https://github.com/getoconas/tp-angular
+```
 
+## Instalar dependencias
 Ejecutar el comando
-''npm install
+```
+npm install
+```
 
-''ng serve
+## Levantar proyecto
+```
+ng serve
+```
