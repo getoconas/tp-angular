@@ -8,7 +8,6 @@ git clone https://github.com/getoconas/tp-angular
 ```
 
 ## Instalar dependencias
-Ejecutar el comando
 ```
 npm install
 ```
