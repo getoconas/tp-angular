@@ -43,42 +43,31 @@
       </div>
 
       <div class="row form-group">
-        <button type="submit" class="btn btn-primary" (click)="enviarMensaje()" data-toggle="modal" data-target="#myModal" >Enviar</button>
-        <!--[disabled]="!mensajeFrom.form.valid"-->
+        <button type="submit" class="btn btn-primary" (click)="enviarMensaje()" [disabled]="!mensajeFrom.form.valid" >Enviar</button>
         <button type="button" class="btn btn-secondary" (click)="limpiarMensaje()">Limpiar</button>
-
-        <div class="modal fade" id="myModal" role="dialog">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-
-              <!-- Modal Header -->
-              <div class="modal-header">
-                <h4 class="modal-title">Mensaje Enviado</h4>
-                <button type="button" class="close" data-dismiss="modal">×</button>
-              </div>
-
-              <!-- Modal body -->
-              <div class="modal-body">
-                <div>
-                  Para: {{ paraView }}
-                </div>
-                <div>
-                  De: {{ deView }}
-                </div>
-                <div>
-                  Mensaje: {{ textoView }}
-                </div>
-              </div>
-
-              <!-- Modal footer -->
-              <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-              </div>
-
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </form>
+
+  <h2>Informaci&oacute;n de Mensaje</h2>
+  <table class="table mt-10">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Para</th>
+        <th>De</th>
+        <th>Mensaje</th>
+        <th>Fecha</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let mensaje of mensajes; index as i">
+        <td>{{ i+1 }}</td>
+        <td>{{ mensaje.para }}</td>
+        <td>{{ mensaje.de }}</td>
+        <td>{{ mensaje.texto }}</td>
+        <td>{{ mensaje.fecha | date:"dd/MM/yyyy" }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
